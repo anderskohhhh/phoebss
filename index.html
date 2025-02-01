@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Valentine's Day</title>
+        <style>
+            body {
+                background: linear-gradient(to bottom, #ffffff, #ffffff);
+            }
+            div {
+                text-align: center;
+                vertical-align: middle;
+            }
+            h1 {
+                color: #ba4848;
+            }
+            #yesButton {
+                background-color: #37c332;
+                transition: transform 0.3s;
+                margin-right: 10px;
+                width: 120px;
+                font-size: 30px;
+                height: 40px;
+                color: #fff;
+                margin-left: -140px;
+            }
+            #no {
+                position: absolute;
+                background-color: #fa1147;
+                transition: transform 0.3s;
+                margin-left: 10px;
+                width: 120px;
+                height: 40px;
+                color: #fff;
+            }
+            /* Modal Styles */
+            #modal {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                z-index: 1000;
+            }
+            #modal img {
+                max-width: 300px;
+                height: auto;
+                margin-top: 10px;
+            }
+            #modal button {
+                margin-top: 10px;
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #37c332;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            #modal button:hover {
+                background-color: #2b9c29;
+            }
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <h1>Will you be my valentine pooks?</h1>
+            <img id="valentineImage" src="https://c.tenor.com/rI0R2crb_qwAAAAC/tenor.gif" alt="Valentine's Day Image" style="max-width: 300px; height: auto;">
+            <br />
+            <br />
+            <br />
+            <button id="yesButton">Yes</button>
+            <button id="no">No</button>
+        </div>
+
+        <!-- Modal -->
+        <div class="overlay" id="overlay"></div>
+        <div id="modal">
+            <p>YAHOOO! See you soon <3</p>
+            <img src="https://media.tenor.com/jvsVBSMabc4AAAAM/rose-cat-give-give-rose-to-cat.gif" alt="Happy GIF">
+            <button onclick="closeModal()">Close</button>
+        </div>
+
+        <script>
+            document.getElementById("yesButton").addEventListener("click", showAlert);
+
+            function showAlert() {
+                // Show the modal
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("modal").style.display = "block";
+            }
+
+            function closeModal() {
+                // Hide the modal
+                document.getElementById("overlay").style.display = "none";
+                document.getElementById("modal").style.display = "none";
+            }
+
+            var yesButton = document.getElementById("yesButton");
+            var no = document.getElementById("no");
+            var valentineImage = document.getElementById("valentineImage");
+
+            var noTexts = ["Are you sure?", "I'm gonna cry", "Please give me a chance pookie", "Don't do this to me :(", "I'm on my knees..."];
+            var imageSources = ["https://c.tenor.com/OroVCOXbuUUAAAAd/tenor.gif", "https://c.tenor.com/ssRi9rxqh9UAAAAd/tenor.gif", "https://media.tenor.com/sIf1VJDSfSkAAAAM/cat-woof.gif", "https://media1.tenor.com/m/pg68op-nERsAAAAd/begging-hamster-hamster.gif"];
+
+            no.addEventListener("click", change);
+
+            function change() {
+                var randomIndex = Math.floor(Math.random() * noTexts.length);
+                var randomText = noTexts[randomIndex];
+                no.innerText = randomText;
+
+                var i = Math.floor(Math.random() * 1000) + 1;
+                var j = Math.floor(Math.random() * 700) + 1;
+                no.style.left = i + "px";
+                no.style.top = j + "px";
+
+                var currentWidth = yesButton.offsetWidth;
+                var currentHeight = yesButton.offsetHeight;
+                yesButton.style.width = currentWidth + 30 + "px";
+                yesButton.style.height = currentHeight + 10 + "px";
+
+                var randomImageIndex = Math.floor(Math.random() * imageSources.length);
+                valentineImage.src = imageSources[randomImageIndex];
+            }
+        </script>
+    </body>
+</html>
